@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>mashup</artifactId>
+        <groupId>es.udc.mashup</groupId>
+        <version>3.0.2</version>
+    </parent>
+    <groupId>es.udc.mashup</groupId>
+    <artifactId>mashup-virtualstore</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>
+    <name>Mashup VirtualStore Subsystem</name>
+    <url></url>
+    <dependencies>
+        <dependency>
+            <groupId>es.udc.ws</groupId>
+            <artifactId>ws-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jdom</groupId>
+            <artifactId>jdom</artifactId>
+        </dependency>
+        
+        <!-- Libreria JSON -->
+        
+        <dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+        
+    </dependencies>
+    
+    <!-- Build para WSDL -->
+    
+    <description>jar</description>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.12</version>
+                <executions>
+                    <execution>
+                    	<id>WSDLINTERNAL</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+	                    	<wsdlDirectory>../internalprovider/target/jaxws/wsgen/wsdl/
+	                    	</wsdlDirectory>
+	                    	<sourceDestDir>src/main/java</sourceDestDir>
+	                    	<packageName>es.udc.mashup.productprovider.internal.wsdl</packageName>
+                		</configuration>
+                    </execution>
+                
+                	<execution>
+                		<id>WSDLEBAY</id>
+                		<goals>
+                			<goal>wsimport</goal>
+                		</goals>
+                		<configuration>
+                			<wsdlDirectory>src/main/resources</wsdlDirectory>
+                			<sourceDestDir>src/main/java</sourceDestDir>
+                			<packageName>es.udc.mashup.productprovider.ebay.wsdl</packageName>
+                		</configuration>
+                	</execution>
+               	</executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

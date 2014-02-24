@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://internalprovider.mashup.udc.es/" xmlns:tns="http://internalprovider.mashup.udc.es/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="findProducts" type="tns:findProducts"/>
+
+  <xs:element name="findProductsByDate" type="tns:findProductsByDate"/>
+
+  <xs:element name="findProductsByDateResponse" type="tns:findProductsByDateResponse"/>
+
+  <xs:element name="findProductsResponse" type="tns:findProductsResponse"/>
+
+  <xs:complexType name="findProductsByDate">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findProductsByDateResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:productWTO" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="productWTO">
+    <xs:sequence>
+      <xs:element name="category" type="xs:string" minOccurs="0"/>
+      <xs:element name="date" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="discount" type="xs:double"/>
+      <xs:element name="imageURL" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="price" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findProducts">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:double"/>
+      <xs:element name="arg3" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findProductsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:productWTO" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

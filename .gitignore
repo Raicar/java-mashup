@@ -4,3 +4,9 @@
 *.jar
 *.war
 *.ear
+
+# Directories  #
+.svn/
+
+# Mac OS X #
+.DS_Store
